@@ -21,12 +21,25 @@ export const site = {
       : "http://localhost:3000"),
   description:
     "AAYAM, NIT Agartala's annual technical fest, celebrates the stories, memories, and innovation that bring us together. Over three vibrant days, it showcases the best of student life through thrilling competitions, dynamic performances, and high-energy workshops.",
-  shortDescription: "The annual technical fest of NIT Agartala. Date reveal soon.",
+  shortDescription: "The annual technical fest of NIT Agartala. 13–15 November 2026.",
+  /** Fest dates */
+  dates: {
+    /** ISO timestamps in IST. */
+    start: "2026-11-13T00:00:00+05:30",
+    end: "2026-11-15T23:59:59+05:30",
+    /** Display strings */
+    rangeShort: "13–15 NOV",
+    dayStart: "13",
+    dayEnd: "15",
+    month: "NOV",
+    monthLong: "November",
+    year: "2026",
+  },
   /**
    * Fest dates are hidden until the organisers announce them. Every place that
    * used to show a date shows this status instead.
    */
-  dateStatus: "Date reveal soon",
+  dateStatus: "13–15 Nov",
 } as const;
 
 export type SocialLink = {

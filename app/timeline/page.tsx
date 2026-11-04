@@ -3,10 +3,10 @@ import { sectionMetadata } from "@/app/_lib/sectionMetadata";
 
 export const metadata = sectionMetadata({
   title: "Timeline",
-  description: "The AAYAM 2026 timeline at NIT Agartala — coming soon.",
+  description: "The AAYAM 2026 timeline at NIT Agartala — 13th -15th Nov ",
   path: "/timeline",
 });
 
 export default function TimelinePage() {
-  return <ComingSoon sectionName="Timeline" />;
+  return 0;
 }

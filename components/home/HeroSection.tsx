@@ -80,8 +80,10 @@ export function HeroSection() {
           <div className={styles.dateBlock}>
             {/* Fest dates stay hidden until the organisers announce them. */}
             <p className={styles.date}>
-              <span className={styles.dateMain}>DATE REVEAL</span>
-              <span className={styles.dateCaption}>COMING SOON</span>
+              <span className={styles.dateMain}>{site.dates.rangeShort}</span>
+              <span className={styles.dateCaption}>
+                {site.dates.year} · {site.institute.toUpperCase()}
+              </span>
             </p>
           </div>
 

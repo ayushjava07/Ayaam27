@@ -127,7 +127,7 @@ export function SpotlightPoster({ className }: { className?: string }) {
 
       <span className={styles.content}>
         <span className={styles.rule} />
-        <span className={styles.wide}>Coming</span>
+        <span className={styles.wide}></span>
 
         <span className={styles.box}>
           <svg className={styles.numerals} viewBox={`0 0 ${NUM_W} 170`} focusable="false">
@@ -155,14 +155,14 @@ export function SpotlightPoster({ className }: { className?: string }) {
               lengthAdjust="spacingAndGlyphs"
               stroke={`url(#${gradientId})`}
             >
-              DATE
+              {site.dates.dayStart}—{site.dates.dayEnd}
             </text>
           </svg>
-          <span className={styles.month}>REVEAL</span>
+          <span className={styles.month}>{site.dates.month}</span>
         </span>
 
         <span className={styles.small}>{site.institute}</span>
-        <span className={styles.wide}>Soon</span>
+        <span className={styles.wide}></span>
 
         <span className={styles.stripes}>
           {Array.from({ length: STRIPES }, (_, i) => (
