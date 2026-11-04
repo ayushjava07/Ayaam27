@@ -1,0 +1,211 @@
+.footer {
+  position: relative;
+  z-index: var(--z-content);
+  padding: clamp(48px, 7vw, 80px) var(--gutter) max(40px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--void-black);
+}
+
+.grid {
+  display: grid;
+  gap: 48px;
+}
+
+/* ---- Brand column ---- */
+
+.brand {
+  display: grid;
+  justify-items: start;
+  gap: 18px;
+  align-content: start;
+}
+
+/* Lock-up: "NIT Agartala's" above, the wordmark, the year tucked bottom-right */
+.brandLink {
+  display: inline-grid;
+  justify-items: start;
+  gap: 4px;
+}
+
+.lockupInstitute {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--chrome-white);
+}
+
+.mark {
+  width: clamp(130px, 14vw, 180px);
+}
+
+.lockupYear {
+  justify-self: end;
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--chrome-white);
+}
+
+.business {
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.businessLabel {
+  font-size: var(--fs-small);
+  color: var(--liquid-silver);
+}
+
+.businessLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--chrome-white);
+  overflow-wrap: anywhere;
+}
+
+.businessLink:hover,
+.businessLink:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.socials {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 0 -10px;
+  padding: 0;
+  list-style: none;
+}
+
+.social {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: var(--liquid-silver);
+  transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.social:hover,
+.social:focus-visible {
+  color: var(--chrome-white);
+  transform: translateY(-2px);
+}
+
+.credit {
+  font-size: var(--fs-small);
+  color: var(--liquid-silver);
+}
+
+/* ---- Column headings ---- */
+
+.heading {
+  margin-bottom: 14px;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--liquid-silver);
+}
+
+/* ---- Quick links ---- */
+
+.links ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  gap: 2px 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--chrome-white);
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 8px) / 0 1px no-repeat;
+  transition: background-size var(--dur-med) var(--ease-out);
+}
+
+.link:hover,
+.link:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* ---- For general queries ---- */
+
+.contactList {
+  display: grid;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact {
+  display: grid;
+  gap: 4px;
+}
+
+.contactName {
+  font-size: var(--fs-lead);
+  font-weight: 700;
+  color: var(--chrome-white);
+}
+
+.contactRole {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--chrome-white);
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  font-size: var(--fs-small);
+  color: var(--liquid-silver);
+  overflow-wrap: anywhere;
+}
+
+.contactLink:hover,
+.contactLink:focus-visible {
+  color: var(--chrome-white);
+}
+
+.pending {
+  font-size: var(--fs-small);
+  color: var(--liquid-silver);
+}
+
+@media (min-width: 768px) {
+  /* three columns: brand | quick links (centre) | general queries */
+  .grid {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 56px;
+  }
+
+  .queries {
+    justify-self: end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social:hover,
+  .social:focus-visible {
+    transform: none;
+  }
+}
+
+/* phone / mail glyphs in front of contact details */
+.inlineIcon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: var(--chrome-white);
+}

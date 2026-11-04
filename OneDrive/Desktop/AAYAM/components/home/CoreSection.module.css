@@ -1,0 +1,80 @@
+/* --------------------------------------------------------------------------
+   Section 02 — compact two-column panel (mobile-first: one stacked column)
+   -------------------------------------------------------------------------- */
+
+.core {
+  position: relative;
+  z-index: var(--z-content);
+  padding: clamp(40px, 6vw, 72px) var(--gutter);
+  /* the slide-ins start 120px off to the side; never let them widen the page */
+  overflow-x: clip;
+}
+
+.frame {
+  display: grid;
+  gap: clamp(28px, 4vw, 48px);
+  align-items: center;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+/* ---- text column ------------------------------------------------------ */
+
+.text {
+  display: grid;
+  justify-items: start;
+  gap: clamp(20px, 3vw, 32px);
+}
+
+.title {
+  line-height: 0;
+}
+
+.titleMark {
+  display: block;
+  width: min(100%, 460px);
+}
+
+.line {
+  display: grid;
+  gap: 12px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel-grey);
+}
+
+.statement {
+  max-width: 24ch;
+  font-size: clamp(1.2rem, 1rem + 0.8vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: var(--chrome-white);
+}
+
+/* ---- Spotlight poster ------------------------------------------------- */
+
+.posterCell {
+  display: grid;
+  justify-items: center;
+}
+
+.posterCell .poster {
+  width: min(72vw, 300px);
+}
+
+@media (min-width: 900px) {
+  .frame {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  }
+
+  .posterCell .poster {
+    /* keep the 9:16 card well inside one screen */
+    width: min(100%, calc((100svh - 260px) * 9 / 16), 320px);
+  }
+}
