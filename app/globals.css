@@ -72,6 +72,16 @@
   box-sizing: border-box;
 }
 
+/* League Of Legends Sword - https://www.cursors-4u.com/cursor/league-of-legends-sword */
+*,
+*::before,
+*::after {
+  cursor: url('/cursors/league-of-legends-sword.webp') 32 32,
+    url('https://cdn.cursors-4u.net/previews/league-of-legends-sword-c9623394-32.webp') 32 32,
+    auto !important;
+}
+/* End www.Cursors-4U.com Code */
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

@@ -25,17 +25,6 @@ export const metadata: Metadata = {
   },
   description: site.description,
   applicationName: site.name,
-  openGraph: {
-    type: "website",
-    siteName: site.name,
-    title: `${site.name} ${site.year} · ${site.institute}`,
-    description: site.shortDescription,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${site.name} ${site.year} · ${site.institute}`,
-    description: site.shortDescription,
-  },
 };
 
 export const viewport: Viewport = {
@@ -45,14 +34,8 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-/**
- * Scroll-reveal targets (components/home/Reveal.tsx) start hidden in the
- * server HTML; without JavaScript they must stay visible. A <style> inside
- * <noscript> is only valid in <head>, so the rule lives here.
- */
 const NO_JS_REVEAL =
   "[data-reveal]{opacity:1!important;transform:none!important}" +
-  // the pinned Touch hero can't run without JS: show its settled state, unpinned
   "[data-touch-scene]{--hero-t:1!important;height:100svh!important}";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -63,6 +46,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       data-scroll-behavior="smooth"
     >
       <head>
+        <link rel="preload" as="image" href="/cursors/league-of-legends-sword.webp" />
         <noscript>
           <style>{NO_JS_REVEAL}</style>
         </noscript>
