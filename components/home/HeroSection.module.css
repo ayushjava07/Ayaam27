@@ -180,6 +180,74 @@
   color: var(--liquid-silver);
 }
 
+/* Hollow numerals — echo the poster's outlined date; they fill on hover */
+.numbers {
+  color: transparent;
+  -webkit-text-stroke: 0.035em var(--chrome-white);
+  transition: color var(--dur-med) var(--ease-out);
+}
+
+@supports not (-webkit-text-stroke: 1px #000) {
+  .numbers {
+    color: var(--chrome-white);
+  }
+}
+
+@media (forced-colors: active) {
+  .numbers {
+    color: CanvasText;
+    -webkit-text-stroke: 0;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .dateBlock:hover .numbers,
+  .dateBlock:focus-within .numbers {
+    color: var(--chrome-white);
+  }
+}
+
+/* The settling hairline only exists on desktop; mobile keeps the clean stack */
+.dateRule {
+  display: none;
+}
+
+.scrollCue {
+  position: relative;
+}
+
+/* a small chrome ping under the drip line, echoing the header's live dot */
+.scrollCue::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 3px;
+  height: 3px;
+  margin-left: -1.5px;
+  border-radius: 50%;
+  background: var(--chrome-white);
+  opacity: 0.4;
+  animation: cue-ping 3.2s var(--ease-in-out) infinite;
+}
+
+.scrollCue:hover::after,
+.scrollCue:focus-visible::after {
+  animation-duration: 1.6s;
+  opacity: 1;
+}
+
+@keyframes cue-ping {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
 .cues {
   grid-area: cues;
   display: flex;
@@ -369,6 +437,19 @@
     text-align: right;
   }
 
+  /* hairline that grows toward the date as the scene settles */
+  .dateRule {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(242, 244, 247, 0) 0%,
+      var(--line-strong) 100%
+    );
+    transform-origin: right center;
+  }
+
   .date {
     display: grid;
     gap: 8px;
@@ -423,6 +504,12 @@
 
 /* ---- no pin: reduced motion, static-gl, fallback --------------------------- */
 
+@media (min-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .dateRule {
+    transform: scaleX(var(--settle));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scene {
     height: 100svh;
@@ -432,6 +519,11 @@
     animation: none;
     transform: none;
     opacity: 0.6;
+  }
+
+  .scrollCue::after {
+    animation: none;
+    opacity: 0.5;
   }
 }
 

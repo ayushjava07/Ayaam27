@@ -79,8 +79,14 @@ export function HeroSection() {
 
           <div className={styles.dateBlock}>
             {/* Fest dates stay hidden until the organisers announce them. */}
+            <span className={styles.dateRule} aria-hidden="true" />
             <p className={styles.date}>
-              <span className={styles.dateMain}>{site.dates.rangeShort}</span>
+              <span className={styles.dateMain}>
+                <span className={styles.numbers}>
+                  {site.dates.dayStart}–{site.dates.dayEnd}
+                </span>{" "}
+                {site.dates.month}
+              </span>
               <span className={styles.dateCaption}>
                 {site.dates.year} · {site.institute.toUpperCase()}
               </span>

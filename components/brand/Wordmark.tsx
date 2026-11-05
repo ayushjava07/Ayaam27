@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styles from "./Wordmark.module.css";
+import { WordmarkGlow } from "./WordmarkGlow";
 import wordmark from "@/public/images/brand/aayam-wordmark@2x.webp";
 
 type WordmarkProps = {
@@ -15,6 +16,10 @@ type WordmarkProps = {
   className?: string;
   /** Pass "" when an adjacent text label already names the fest. */
   alt?: string;
+  /** A chromium sweep crosses the letters on hover (CSS only). */
+  sheen?: boolean;
+  /** A light tucked inside the letters follows the pointer (small client JS). */
+  light?: boolean;
 };
 
 /**
@@ -28,9 +33,13 @@ export function Wordmark({
   sizes = "(max-width: 768px) 90vw, 60vw",
   className,
   alt = "AAYAM",
+  sheen = false,
+  light = false,
 }: WordmarkProps) {
-  return (
-    <span className={[styles.root, styles[variant], className].filter(Boolean).join(" ")}>
+  const root = [styles.root, styles[variant], className].filter(Boolean).join(" ");
+
+  const inner = (
+    <>
       <Image
         src={wordmark}
         alt={alt}
@@ -39,6 +48,14 @@ export function Wordmark({
         className={styles.img}
         draggable={false}
       />
-    </span>
+      {sheen ? <span className={styles.sheen} aria-hidden="true" /> : null}
+      {light ? <span className={styles.glow} aria-hidden="true" /> : null}
+    </>
   );
+
+  if (light) {
+    return <WordmarkGlow className={root}>{inner}</WordmarkGlow>;
+  }
+
+  return <span className={root}>{inner}</span>;
 }

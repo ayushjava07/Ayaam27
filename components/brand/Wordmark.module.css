@@ -18,3 +18,91 @@
 .chrome .img {
   filter: grayscale(1) brightness(1.55) contrast(1.25) drop-shadow(0 10px 30px rgba(242, 244, 247, 0.08));
 }
+
+/*
+ * Light play inside the letterforms (chrome variant only). Both layers sit
+ * exactly on the artwork and are clipped to its alpha channel, so the light
+ * lives on the letters rather than in a box.
+ */
+.chrome .sheen,
+.chrome .glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  -webkit-mask-image: url("/images/brand/aayam-wordmark@2x.webp");
+  mask-image: url("/images/brand/aayam-wordmark@2x.webp");
+  -webkit-mask-mode: alpha;
+  mask-mode: alpha;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+/* A chromium sweep that crosses the letters once on hover */
+.chrome .sheen {
+  opacity: 0;
+  background: linear-gradient(
+    115deg,
+    rgba(242, 244, 247, 0) 36%,
+    rgba(242, 244, 247, 0.5) 47%,
+    rgba(255, 255, 255, 0.92) 50%,
+    rgba(242, 244, 247, 0.5) 53%,
+    rgba(242, 244, 247, 0) 64%
+  );
+  background-size: 280% 100%;
+  background-position: 135% 0%;
+}
+
+.chrome:hover .sheen {
+  opacity: 1;
+  animation: sheen-sweep 1.15s var(--ease-out) both;
+}
+
+@keyframes sheen-sweep {
+  from {
+    background-position: 135% 0%;
+  }
+
+  to {
+    background-position: -15% 0%;
+  }
+}
+
+/* A light that follows the pointer inside the letters (--mx / --my in %) */
+.chrome .glow {
+  opacity: 0;
+  background: radial-gradient(
+    26% 38% at var(--mx, 50%) var(--my, 30%),
+    rgba(242, 244, 247, 0.62),
+    rgba(174, 181, 190, 0.28) 46%,
+    rgba(174, 181, 190, 0) 72%
+  );
+  transition: opacity var(--dur-med) var(--ease-out);
+}
+
+.chrome:hover .glow,
+.chrome:focus-within .glow {
+  opacity: 1;
+}
+
+/* Browsers without mask support must not paint a big unclipped flash */
+@supports not ((-webkit-mask-image: url("/images/brand/aayam-wordmark@2x.webp")) or (mask-image: url("/images/brand/aayam-wordmark@2x.webp"))) {
+  .chrome .sheen,
+  .chrome .glow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The sweep is motion; the glow stays pointer-driven and instant. */
+  .chrome:hover .sheen {
+    animation: none;
+    opacity: 0;
+  }
+
+  .chrome .glow {
+    transition-duration: 0.001ms;
+  }
+}
