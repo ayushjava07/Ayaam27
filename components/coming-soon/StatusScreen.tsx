@@ -2,6 +2,7 @@ import { Wordmark } from "@/components/brand/Wordmark";
 import { SiteFooter } from "@/components/shell/SiteFooter";
 import { ChromeLink } from "@/components/ui/ChromeLink";
 import { site } from "@/content/site";
+import { LiquidSmoke } from "./LiquidSmoke";
 import styles from "./StatusScreen.module.css";
 
 type StatusScreenProps = {
@@ -12,22 +13,26 @@ type StatusScreenProps = {
   /** Render the display line as outlined numerals (404). */
   outlined?: boolean;
   description: string;
+  /** Adds the interactive liquid-smoke shader behind the content. */
+  smoke?: boolean;
 };
 
 /**
  * Shared full-height composition used by the Coming Soon routes and the 404
  * page: hairline frame, small chrome wordmark, one h1, back-home link, footer.
- * Pure CSS — no 3D, no client JS.
+ * Pure CSS — no 3D, no client JS — unless `smoke` opts into the shader.
  */
 export function StatusScreen({
   eyebrow,
   display,
   outlined = false,
   description,
+  smoke = false,
 }: StatusScreenProps) {
   return (
     <div className={styles.page}>
       <section className={styles.stage} aria-labelledby="status-title">
+        {smoke ? <LiquidSmoke /> : null}
         <div className={styles.frame} aria-hidden="true">
           <span className={`${styles.corner} ${styles.tl}`} />
           <span className={`${styles.corner} ${styles.tr}`} />

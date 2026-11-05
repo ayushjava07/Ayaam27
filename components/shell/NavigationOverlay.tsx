@@ -216,9 +216,7 @@ export function NavigationOverlay({
                         aria-current={current ? "page" : undefined}
                         onClick={(event) => onLinkClick(event, item.href)}
                       >
-                        <span className={item.pulse ? `${styles.label} ${styles.pulse}` : styles.label}>
-                          {item.label}
-                        </span>
+                        <span className={styles.label}>{item.label}</span>
                         <span className={styles.meta}>
                           {current ? (
                             <span className={styles.current} aria-hidden="true">

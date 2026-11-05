@@ -87,6 +87,28 @@ html {
   text-size-adjust: 100%;
   background: var(--void-black);
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gunmetal) transparent;
+}
+
+/* Thin chrome scrollbar (WebKit/Blink); Firefox uses the properties above. */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--void-black);
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid var(--void-black);
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--gunmetal), #15181d);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--steel-grey);
 }
 
 body {
@@ -99,6 +121,7 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
   overflow-x: hidden;
 }
 
@@ -135,6 +158,23 @@ h3,
 h4,
 p {
   margin: 0;
+}
+
+/* Editorial line breaking: headings stay balanced, prose stays even. */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Numerals in labels, dates and metadata always line up. */
+:where(time, code, kbd, samp) {
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {

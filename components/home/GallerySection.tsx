@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SectionRule } from "@/components/ui/SectionRule";
 import { gallery, site } from "@/content/site";
 import { Reveal } from "./Reveal";
 import styles from "./GallerySection.module.css";
@@ -17,6 +18,8 @@ export function GallerySection() {
 
   return (
     <section id="gallery" className={styles.gallery} aria-labelledby="gallery-title">
+      <SectionRule index="03" />
+
       <Reveal from="left" className={styles.head}>
         <h2 id="gallery-title" className={styles.title}>
           Gallery
@@ -34,6 +37,12 @@ export function GallerySection() {
               sizes="(max-width: 767px) 50vw, 30vw"
               className={styles.img}
             />
+            <span className={styles.index} aria-hidden="true">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <span className={styles.caption} aria-hidden="true">
+              {photo.alt}
+            </span>
           </Reveal>
         ))}
       </ul>

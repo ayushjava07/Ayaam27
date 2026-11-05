@@ -31,15 +31,21 @@ export function SiteHeader() {
     let frame = 0;
     const update = () => {
       frame = 0;
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const progress = max > 0 ? Math.min(1, window.scrollY / max) : 0;
       setScrolled(window.scrollY > SCROLL_THRESHOLD);
+      headerRef.current?.style.setProperty("--scroll-progress", progress.toFixed(4));
     };
     const onScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(update);
     };
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
@@ -52,6 +58,8 @@ export function SiteHeader() {
         ref={headerRef}
         className={[styles.header, scrolled ? styles.scrolled : null].filter(Boolean).join(" ")}
       >
+        <span className={styles.progress} aria-hidden="true" />
+
         <Link href="/" className={styles.brand} aria-label={`${site.name} home`}>
           <Wordmark variant="chrome" alt="" sizes="120px" className={styles.mark} />
         </Link>
@@ -62,9 +70,10 @@ export function SiteHeader() {
               <li key={item.href} className={item.badge || item.pulse ? styles.barBadged : styles.barItem}>
                 <Link
                   href={item.href}
-                  className={item.pulse ? `${styles.barLink} ${styles.pulse}` : styles.barLink}
+                  className={styles.barLink}
                   aria-current={item.href === pathname ? "page" : undefined}
                 >
+                  {item.pulse ? <span className={styles.liveDot} aria-hidden="true" /> : null}
                   {item.label}
                   {item.badge ? (
                     <span className={styles.badge}>
@@ -82,7 +91,7 @@ export function SiteHeader() {
           ref={triggerRef}
           type="button"
           className={styles.trigger}
-          aria-label="Open navigation"
+          aria-label="Open menu"
           aria-expanded={open}
           aria-controls={OVERLAY_ID}
           aria-haspopup="dialog"

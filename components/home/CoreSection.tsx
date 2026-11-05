@@ -1,4 +1,5 @@
 import { Wordmark } from "@/components/brand/Wordmark";
+import { SectionRule } from "@/components/ui/SectionRule";
 import { site } from "@/content/site";
 import { Reveal } from "./Reveal";
 import { SpotlightPoster } from "./SpotlightPoster";
@@ -13,6 +14,8 @@ import styles from "./CoreSection.module.css";
 export function CoreSection() {
   return (
     <section id="core" className={styles.core} aria-labelledby="core-title">
+      <SectionRule index="02" className={styles.rail} />
+
       <div className={styles.frame}>
         <Reveal from="left" className={styles.text}>
           <h2 id="core-title" className={styles.title}>

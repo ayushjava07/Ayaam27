@@ -1,0 +1,28 @@
+.rule {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.4vw, 18px);
+  width: 100%;
+  margin-bottom: clamp(24px, 3.5vw, 40px);
+}
+
+.index {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-micro);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.24em;
+  color: var(--steel-grey);
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--line-strong) 0%,
+    var(--line) 18%,
+    rgba(174, 181, 190, 0) 100%
+  );
+}

@@ -429,26 +429,3 @@
   }
 }
 
-/* Highlighted destination (Events): a steady, gentle zoom in and out */
-.pulse {
-  display: inline-block;
-  transform-origin: left center;
-  animation: label-pulse 1.8s var(--ease-in-out) infinite;
-}
-
-@keyframes label-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.06);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pulse {
-    animation: none;
-  }
-}

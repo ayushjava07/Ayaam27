@@ -39,6 +39,25 @@
   opacity: 1;
 }
 
+/* Scroll progress hairline — grows across the header as the page advances */
+.progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--liquid-silver), var(--chrome-white));
+  transform: scaleX(var(--scroll-progress, 0));
+  transform-origin: left center;
+  opacity: 0;
+  transition: opacity var(--dur-med) var(--ease-out);
+  pointer-events: none;
+}
+
+.scrolled .progress {
+  opacity: 1;
+}
+
 .brand,
 .trigger,
 .bar {
@@ -170,6 +189,40 @@
   transform: scaleX(1);
 }
 
+/* Steady attention cue on the highlighted destination (replaces the old zoom) */
+.liveDot {
+  position: relative;
+  flex: none;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--chrome-white);
+  box-shadow: 0 0 8px rgba(242, 244, 247, 0.5);
+}
+
+.liveDot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 1px solid var(--chrome-white);
+  border-radius: inherit;
+  opacity: 0;
+  animation: live-ping 2.4s var(--ease-out) infinite;
+}
+
+@keyframes live-ping {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+
+  70%,
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
 /* the Merch "Early bird" pill gently zooms in and out */
 .badge {
   padding: 3px 7px;
@@ -230,26 +283,9 @@
   .badge {
     animation: none;
   }
-}
 
-/* Highlighted destination (Events): a steady, gentle zoom in and out */
-.pulse {
-  animation: link-pulse 1.8s var(--ease-in-out) infinite;
-}
-
-@keyframes link-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.14);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .pulse {
+  .liveDot::after {
     animation: none;
+    opacity: 0.35;
   }
 }

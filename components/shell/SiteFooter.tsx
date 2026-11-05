@@ -89,14 +89,11 @@ export function SiteFooter({ className }: SiteFooterProps) {
       <div className={styles.grid}>
         <div className={styles.brand}>
           {/* Lock-up after the Alcheringa footer: "NIT Agartala's / AAYAM / 2026" */}
-          <Link href="/" className={styles.brandLink} aria-label={`${site.institute}'s ${site.name} ${site.year} — home`}>
-            <span className={styles.lockupInstitute} aria-hidden="true">
-              {site.institute}&apos;s
-            </span>
+          <Link href="/" className={styles.brandLink}>
+            <span className={styles.lockupInstitute}>{site.institute}&apos;s</span>
             <Wordmark variant="chrome" alt="" sizes="200px" className={styles.mark} />
-            <span className={styles.lockupYear} aria-hidden="true">
-              {site.year}
-            </span>
+            <span className={styles.lockupYear}>{site.year}</span>
+            <span className="visually-hidden"> — {site.name} home</span>
           </Link>
           <div className={styles.business}>
             <p className={styles.businessLabel}>For business &amp; sponsorship queries</p>
@@ -135,7 +132,6 @@ export function SiteFooter({ className }: SiteFooterProps) {
               ))}
             </ul>
           ) : null}
-          <p className={styles.credit}>{credit}</p>
         </div>
 
         <nav className={styles.links} aria-label="Quick links">
@@ -178,6 +174,30 @@ export function SiteFooter({ className }: SiteFooterProps) {
             <p className={styles.pending}>Contact details coming soon.</p>
           )}
         </div>
+      </div>
+
+      <div className={styles.bottomBar}>
+        <p className={styles.colophon}>
+          <span>
+            © {site.year} {site.name} · {site.institute}
+          </span>
+          <span className={styles.credit}>{credit}</span>
+        </p>
+        <a href="#main" className={styles.toTop}>
+          Back to top
+          <svg
+            viewBox="0 0 16 16"
+            width="14"
+            height="14"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" />
+          </svg>
+        </a>
       </div>
     </footer>
   );

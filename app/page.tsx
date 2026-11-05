@@ -3,6 +3,7 @@ import { ChromeStage } from "@/components/stage/ChromeStage";
 import { CoreSection } from "@/components/home/CoreSection";
 import { GallerySection } from "@/components/home/GallerySection";
 import { HeroSection } from "@/components/home/HeroSection";
+import { Marquee } from "@/components/home/Marquee";
 import { SiteFooter } from "@/components/shell/SiteFooter";
 import styles from "./page.module.css";
 
@@ -26,6 +27,7 @@ export default function HomePage() {
       <HeroSection />
       <CoreSection />
       <GallerySection />
+      <Marquee />
       <SiteFooter />
       <ChromeStage />
       <div className={styles.grain} aria-hidden="true" />

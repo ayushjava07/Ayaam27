@@ -1,0 +1,12 @@
+/* Liquid smoke shader canvas — sits behind the Coming Soon content. */
+.smoke {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}

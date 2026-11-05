@@ -8,5 +8,5 @@ export const metadata = sectionMetadata({
 });
 
 export default function EventsPage() {
-  return <ComingSoon sectionName="Events" />;
+  return <ComingSoon sectionName="Events" smoke />;
 }

@@ -1,0 +1,88 @@
+/* Closing statement band — condensed chrome type, hairline top and bottom. */
+
+.band {
+  position: relative;
+  z-index: var(--z-content);
+  overflow: hidden;
+  padding-block: clamp(14px, 2.4vw, 26px);
+  border-block: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(16, 18, 22, 0.55), rgba(5, 6, 8, 0) 70%),
+    var(--void-black);
+  user-select: none;
+}
+
+/* Two identical groups scroll by exactly one group width */
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 42s linear infinite;
+  will-change: transform;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+  padding-right: clamp(20px, 3vw, 44px);
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 1rem + 4.4vw, 4.6rem);
+  font-weight: 800;
+  font-variation-settings: "wdth" var(--wdth-condensed);
+  font-stretch: 62%;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+}
+
+/* Alternate solid chrome and outlined words */
+.item:nth-child(odd) {
+  color: var(--chrome-white);
+  -webkit-text-stroke: 0;
+}
+
+.sep {
+  font-weight: 300;
+  color: var(--steel-grey);
+  -webkit-text-stroke: 0;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/*
+ * The band is the one deliberate exception to the global reduced-motion rule:
+ * it keeps drifting, just slowly, so the closing statement never looks frozen.
+ * The class selector with !important outranks the global `*` reset.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation-duration: 90s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .item {
+    color: CanvasText;
+    -webkit-text-stroke: 0;
+  }
+}
