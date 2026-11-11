@@ -52,38 +52,38 @@ const days: DayGroup[] = [
     date: "13 November 2026",
     events: [
       { name: "HackSphere Finale", poster: poster18, registerUrl: "#" },
-      { name: "Designothon", poster: poster12, registerUrl: "#" },
-      { name: "Velocity X", poster: poster2, registerUrl: "#" },
+      { name: "Designothon", poster: poster12, registerUrl: "https://unstop.com/p/designothon-aayam-xi-national-institute-of-technology-nit-agartala-1802171?lb=useCctqi&utm_medium=Share&utm_source=teammec20031&utm_campaign=Competitions" },
+      { name: "Velocity X", poster: poster2, registerUrl: "https://unstop.com/p/velocity-x-national-institute-of-technology-nit-agartala-1799793" },
       { name: "Velocity X Robot Challenge", poster: poster15, registerUrl: "#" },
-      { name: "CAD Rush", poster: poster9, registerUrl: "#" },
-      { name: "Game of Codes", poster: poster4, registerUrl: "#" },
+      { name: "CAD Rush", poster: poster9, registerUrl: "https://unstop.com/o/3ZPDa6E?lb=fiBUi6bl&utm_medium=Share&utm_source=animaaer81479&utm_campaign=Competitions" },
+      { name: "Game of Codes", poster: poster4, registerUrl: "https://unstop.com/o/munN0Sb?lb=zztHtY7l&utm_medium=Share&utm_source=madhukos2210&utm_campaign=Online_coding_challenge" },
     ],
   },
   {
     day: "Day 2",
     date: "14 November 2026",
     events: [
-      { name: "Technovus Hackathon", poster: poster3, registerUrl: "#" },
+      { name: "Technovus Hackathon", poster: poster3, registerUrl: "https://qrfy.io/zeEBNTFDbR" },
       { name: "Robo Expo", poster: poster1, registerUrl: "#" },
-      { name: "Beyond Bits Workshop", poster: poster5, registerUrl: "#" },
-      { name: "Mechanism Masters", poster: poster7, registerUrl: "#" },
-      { name: "Aero Design Workshop", poster: poster8, registerUrl: "#" },
-      { name: "Robo Soccer", poster: poster19, registerUrl: "#" },
-      { name: "Neorothon", poster: poster20, registerUrl: "#" },
-      { name: "Kickoff Protocol", poster: poster22, registerUrl: "#" },
-      { name: "Case Competition", poster: poster14, registerUrl: "#" },
+      { name: "Beyond Bits Workshop", poster: poster5, registerUrl: "https://q.me-qr.com/1m3vttip" },
+      { name: "Mechanism Masters", poster: poster7, registerUrl: "https://unstop.com/p/mechanism-master-team-mech-estremo-racing-1801237?utm_medium=Share&utm_source=teammec20031&utm_campaign=Competitions" },
+      { name: "Aero Design Workshop", poster: poster8, registerUrl: "https://q.me-qr.com/b7hjyf81" },
+      { name: "Robo Soccer", poster: poster19, registerUrl: "https://unstop.com/competitions/robo-soccer-national-institute-of-technology-nit-agartala-1799792" },
+      { name: "Neorothon", poster: poster20, registerUrl: "https://unstop.com/o/sNjud5A?lb=WMUh9wQg&utm_medium=Share&utm_source=quizzes&utm_campaign=Dataand45825" },
+      { name: "Kickoff Protocol", poster: poster22, registerUrl: "https://unstop.com/o/gdOZCo4?lb=rXJJjlEk&utm_medium=Share&utm_source=arkaproy92172&utm_campaign=Events" },
+      { name: "Case Competition", poster: poster14, registerUrl: "https://scan.page/t0syTV" },
     ],
   },
   {
     day: "Day 3",
     date: "15 November 2026",
     events: [
-      { name: "Drone League", poster: poster10, registerUrl: "#" },
+      { name: "Drone League", poster: poster10, registerUrl: "https://unstop.com/competitions/drone-league-aayam-xi-anima-the-aero-club-of-nit-agartala-1800325" },
       { name: "Air Show", poster: poster11, registerUrl: "#" },
       { name: "Buggy Road Show", poster: poster6, registerUrl: "#" },
-      { name: "Sumo Rumble", poster: poster16, registerUrl: "#" },
-      { name: "Technothon", poster: poster13, registerUrl: "#" },
-      { name: "Checkmate Protocol", poster: poster23, registerUrl: "#" },
+      { name: "Sumo Rumble", poster: poster16, registerUrl: "https://qrcodeveloper.com/code/Pu9Q_WtIeqyVrg_6" },
+      { name: "Technothon", poster: poster13, registerUrl: "https://unstop.com/o/q7JEinR?lb=bo8nbiiN&utm_medium=Share&utm_source=teamxan35450&utm_campaign=Competitions" },
+      { name: "Checkmate Protocol", poster: poster23, registerUrl: "https://unstop.com/o/MkGdQyh?lb=rXJJjlEk&utm_medium=Share&utm_source=arkaproy92172&utm_campaign=Events" },
       { name: "Stargazing Event", poster: poster17, registerUrl: "#" },
     ],
   },
@@ -131,15 +131,17 @@ export default function EventsPage() {
                     {/* Name + CTA */}
                     <div style={styles.cardBody}>
                       <h3 style={styles.cardName}>{event.name}</h3>
-                      <a
-                        href={event.registerUrl}
-                        style={styles.registerBtn}
-                        target={event.registerUrl === "#" ? undefined : "_blank"}
-                        rel={event.registerUrl === "#" ? undefined : "noopener noreferrer"}
-                      >
-                        Register
-                        <span style={styles.arrow} aria-hidden="true">→</span>
-                      </a>
+                      {event.registerUrl !== "#" && (
+                        <a
+                          href={event.registerUrl}
+                          style={styles.registerBtn}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Register
+                          <span style={styles.arrow} aria-hidden="true">→</span>
+                        </a>
+                      )}
                     </div>
                   </article>
                 ))}
